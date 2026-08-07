@@ -6,11 +6,22 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 18:25:27 by ntome             #+#    #+#             */
-/*   Updated: 2026/08/06 22:04:29 by ntome            ###   ########.fr       */
+/*   Updated: 2026/08/08 00:03:08 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_queens.h"
+
+void	print_help(void)
+{
+	printf("Usage: ./ft_queens [N] [--help]\n\n");
+	printf("N: a number between 1 and 26\n");
+	printf("help: display this help section\n");
+	printf("\n\n");
+	printf("The algorithm\n");
+	printf("The algorithm behind the N-Queens problem is very simple;");
+	printf("you need to understand the principle of backtracking (https://en.wikipedia.org/wiki/Backtracking).\n");
+}
 
 void	print_solution_code(state **board, int size)
 {

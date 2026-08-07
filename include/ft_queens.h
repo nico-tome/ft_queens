@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 16:01:36 by ntome             #+#    #+#             */
-/*   Updated: 2026/08/06 20:08:32 by ntome            ###   ########.fr       */
+/*   Updated: 2026/08/07 23:54:34 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdbool.h>
+# include <string.h>
 
 typedef enum e_state
 {
@@ -32,5 +33,7 @@ void	free_board(state **board, int size);
 state	**allocate_board(int size);
 
 int		solver(int size);
+
+bool	parse_arg(int ac, char **av);
 
 #endif

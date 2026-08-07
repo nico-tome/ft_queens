@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 18:41:18 by ntome             #+#    #+#             */
-/*   Updated: 2026/08/06 20:06:25 by ntome            ###   ########.fr       */
+/*   Updated: 2026/08/07 12:39:19 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_board(state **board, int size)
 {
-	if (board)
+	if (!board)
 		return ;
 	for (int i = 0; i < size; i++) {
 		if (board[i])
@@ -32,7 +32,7 @@ state **allocate_board(int size)
 		return (NULL);
 	for (int i = 0; i < size; i++) {
 		board[i] = malloc(sizeof(state) * size);
-		if (board[i])
+		if (!board[i])
 			free_board(board, i);
 	}
 	return (board);

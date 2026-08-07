@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 16:13:20 by ntome             #+#    #+#             */
-/*   Updated: 2026/08/06 21:33:06 by ntome            ###   ########.fr       */
+/*   Updated: 2026/08/07 12:35:34 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,25 @@ static bool	is_safe(state **board, int line, int col, int size)
 			return (0);
 		if (col_right < size && board[line][col_right] == QUEEN)
 			return (0);
-		col_left -= 1;
-		col_right += 1;
+		col_left--;
+		col_right++;
 	}
 	return (1);
 }
 
 static int	rec(state **board, int i, int size)
 {
-	int	nb_solutions;
+	int	nb_solutions = 0;
 
 	if (i == size)
 	{
 		print_solution_code(board, size);
 		print_solution_board(board, size);
 		return (1);
-	}
-	else
-	{
+	} else {
 		nb_solutions = 0;
 		for (int j = 0; j < size; j++) {
-			if (is_safe(board, i, j, size))
-			{
+			if (is_safe(board, i, j, size)) {
 				board[i][j] = QUEEN;
 				nb_solutions += rec(board, i + 1, size);
 				board[i][j] = NONE;
@@ -70,5 +67,6 @@ int	solver(int size)
 		}
 	}
 	s_c = rec(board, 0, size);
+	free_board(board, size);
 	return (s_c);
 }

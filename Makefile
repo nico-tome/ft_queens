@@ -36,13 +36,16 @@ all: ${NAME} banner
 no-banner:	${NAME}
 
 banner: 
-	@echo "███████╗████████╗     ██╗     ███████╗";
-	@echo "██╔════╝╚══██╔══╝     ██║     ██╔════╝";
-	@echo "█████╗     ██║        ██║     ███████╗";
-	@echo "██╔══╝     ██║        ██║     ╚════██║";
-	@echo "██║        ██║███████╗███████╗███████║";
-	@echo "╚═╝        ╚═╝╚══════╝╚══════╝╚══════╝";
-	@echo "                                      ";
+	@echo "${_GREEN} ██████   █████       ██████    █████  █████ ██████████ ██████████ ██████   █████  █████████ ${_RESET}";
+	@echo "${_GREEN}▒▒██████ ▒▒███      ███▒▒▒▒███ ▒▒███  ▒▒███ ▒▒███▒▒▒▒▒█▒▒███▒▒▒▒▒█▒▒██████ ▒▒███  ███▒▒▒▒▒███${_RESET}";
+	@echo "${_GREEN} ▒███▒███ ▒███     ███    ▒▒███ ▒███   ▒███  ▒███  █ ▒  ▒███  █ ▒  ▒███▒███ ▒███ ▒███    ▒▒▒ ${_RESET}";
+	@echo "${_YELLOW} ▒███▒▒███▒███    ▒███     ▒███ ▒███   ▒███  ▒██████    ▒██████    ▒███▒▒███▒███ ▒▒█████████ ${_RESET}";
+	@echo "${_YELLOW} ▒███ ▒▒██████    ▒███   ██▒███ ▒███   ▒███  ▒███▒▒█    ▒███▒▒█    ▒███ ▒▒██████  ▒▒▒▒▒▒▒▒███${_RESET}";
+	@echo "${_YELLOW} ▒███  ▒▒█████    ▒▒███ ▒▒████  ▒███   ▒███  ▒███ ▒   █ ▒███ ▒   █ ▒███  ▒▒█████  ███    ▒███${_RESET}";
+	@echo "${_RED} █████  ▒▒█████    ▒▒▒██████▒██ ▒▒████████   ██████████ ██████████ █████  ▒▒█████▒▒█████████ ${_RESET}";
+	@echo "${_RED}▒▒▒▒▒    ▒▒▒▒▒       ▒▒▒▒▒▒ ▒▒   ▒▒▒▒▒▒▒▒   ▒▒▒▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒▒▒▒ ▒▒▒▒▒    ▒▒▒▒▒  ▒▒▒▒▒▒▒▒▒  ${_RESET}";
+	@echo "${_RED}                                                                                             ${_RESET}";
+                                                                                     
 
 $(NAME): ${LIBS} ${OBJ}
 	@${CC} -o ${NAME} ${FLAGS} ${OBJ}
@@ -90,20 +93,10 @@ help:
 	@printf "  ${_GREEN}help${_RESET}\n"
 	@printf "      Display this help message\n\n"
 
-	@printf "${_BOLD}${_YELLOW}Variables:${_RESET}\n\n"
-
-	@printf "  ${_GREEN}PREFIX${_RESET}\n"
-	@printf "      Installation prefix (default: ${_ITALIC}/usr/local${_RESET})\n\n"
-
-	@printf "  ${_GREEN}BINDIR${_RESET}\n"
-	@printf "      Binary installation directory (default: ${_ITALIC}\$$PREFIX/bin${_RESET})\n\n"
-
 	@printf "${_BOLD}${_YELLOW}Examples:${_RESET}\n\n"
 
 	@printf "  ${_ITALIC}make${_RESET}\n"
 	@printf "  ${_ITALIC}make re${_RESET}\n"
-	@printf "  ${_ITALIC}make install${_RESET}\n"
-	@printf "  ${_ITALIC}make install PREFIX=\$$HOME/.local${_RESET}\n\n"
 
 	@printf "${_BOLD}${_YELLOW}Credits:${_RESET}\n\n"
 
