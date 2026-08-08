@@ -4,7 +4,7 @@ SRC_DIR		:=	src/
 BUILD_DIR	:=	build/
 
 SRC			:=	main.c \
-				memory.c \
+				checker.c \
 				parser.c \
 				printer.c \
 				solver.c
@@ -15,7 +15,7 @@ HEADERS = include/
 
 CC = cc
 
-FLAGS = -Wall -Werror -Wextra -g
+FLAGS = -Wall -Werror -Wextra -g -O3
 
 TPUT = tput -T xterm-256color
 _RESET := $(shell $(TPUT) sgr0)

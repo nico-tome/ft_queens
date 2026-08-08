@@ -6,67 +6,61 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 16:13:20 by ntome             #+#    #+#             */
-/*   Updated: 2026/08/07 12:35:34 by ntome            ###   ########.fr       */
+/*   Updated: 2026/08/08 22:58:40 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_queens.h"
 
-static bool	is_safe(state **board, int line, int col, int size)
+#include <stdint.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+static int	rec(state *board, int line, int size, uint64_t columns, uint64_t diag_left, uint64_t diag_right, uint64_t mask)
 {
-	int	col_left = col;
-	int	col_right = col;
+	uint64_t	available;
+	uint64_t	bit;
+	int			col;
+	int			nb_solutions;
 
-	for (; line >= 0; --line) {
-		if (col_left >= 0 && board[line][col_left] == QUEEN)
-			return (0);
-		if (board[line][col] == QUEEN)
-			return (0);
-		if (col_right < size && board[line][col_right] == QUEEN)
-			return (0);
-		col_left--;
-		col_right++;
-	}
-	return (1);
-}
-
-static int	rec(state **board, int i, int size)
-{
-	int	nb_solutions = 0;
-
-	if (i == size)
+	if (line == size)
 	{
 		print_solution_code(board, size);
 		print_solution_board(board, size);
 		return (1);
-	} else {
-		nb_solutions = 0;
-		for (int j = 0; j < size; j++) {
-			if (is_safe(board, i, j, size)) {
-				board[i][j] = QUEEN;
-				nb_solutions += rec(board, i + 1, size);
-				board[i][j] = NONE;
-			}
-		}
 	}
+
+	available = mask & ~(columns | diag_left | diag_right);
+	nb_solutions = 0;
+
+	while (available)
+	{
+		bit = available & -available;
+		available ^= bit;
+
+		col = __builtin_ctzll(bit);
+		board[line * size + col] = QUEEN;
+
+		nb_solutions += rec(board, line + 1, size, columns | bit, (diag_left | bit) << 1, (diag_right | bit) >> 1, mask);
+
+		board[line * size + col] = NONE;
+	}
+
 	return (nb_solutions);
 }
 
 int	solver(int size)
 {
-	state	**board;
-	int		s_c = 0;
+	state		board[size * size];
+	uint64_t	mask;
+	int			solutions;
 
-	board = allocate_board(size);
-	if (!board)
+	if (size <= 0 || size > 12)
 		return (0);
+	
+	mask = (1ULL << size) - 1;
 
-	for (int line = 0; line < size; line++) {
-		for (int col = 0; col < size; col++) {
-			board[line][col] = NONE;
-		}
-	}
-	s_c = rec(board, 0, size);
-	free_board(board, size);
-	return (s_c);
+	solutions = rec(board, 0, size, 0, 0, 0, mask);
+
+	return (solutions);
 }
