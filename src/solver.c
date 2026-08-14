@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 16:13:20 by ntome             #+#    #+#             */
-/*   Updated: 2026/08/08 22:58:40 by ntome            ###   ########.fr       */
+/*   Updated: 2026/08/15 00:46:51 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <strings.h>
 
 static int	rec(state *board, int line, int size, uint64_t columns, uint64_t diag_left, uint64_t diag_right, uint64_t mask)
 {
@@ -59,6 +60,8 @@ int	solver(int size)
 		return (0);
 	
 	mask = (1ULL << size) - 1;
+
+	memset(board, 0, sizeof(board));
 
 	solutions = rec(board, 0, size, 0, 0, 0, mask);
 

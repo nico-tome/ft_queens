@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 18:25:27 by ntome             #+#    #+#             */
-/*   Updated: 2026/08/09 00:17:46 by ntome            ###   ########.fr       */
+/*   Updated: 2026/08/15 00:19:58 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_help(void)
 	printf("%sACTION%s:\n", GREEN, RESET);
 	printf(" %s--check%s %sPATH%s %sN%s\tCheck if the solutions stored in a file %sPATH%s are true or not.\n",
 			GREEN, RESET, YELLOW, RESET, YELLOW, RESET, YELLOW, RESET);
-	printf(" %s--find%s  %sN%s\tFind all the solutions for a board of size %sN%s.\n",
+	printf(" %s--solve%s  %sN%s\tFind all the solutions for a board of size %sN%s.\n",
 			GREEN, RESET, YELLOW, RESET, YELLOW, RESET);
 	printf(" %s--help%s\t\tShow this help.\n", GREEN, RESET);
 	printf("\n%sOPT%s:\n", YELLOW, RESET);
@@ -30,7 +30,7 @@ void	print_help(void)
 	printf("\n\n");
 	printf("The algorithm\n");
 	printf("The algorithm behind the N-Queens problem is very simple;");
-	printf("you need to understand the principle of backtracking ([https://en.wikipedia.org/wiki/Backtracking).\n](https://en.wikipedia.org/wiki/Backtracking\\).\n)");
+	printf("you need to understand the principle of backtracking https://en.wikipedia.org/wiki/Backtracking.\n");
 }
 
 #define B_BLACK "\033[48;2;0;0;0m"

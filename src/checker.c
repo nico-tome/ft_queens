@@ -6,7 +6,7 @@
 /*   By: ntome <marvin@d42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/08 15:21:03 by ntome             #+#    #+#             */
-/*   Updated: 2026/08/09 00:15:48 by ntome            ###   ########.fr       */
+/*   Updated: 2026/08/15 00:37:52 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,7 @@ static bool	check_board(char *line, int size)
 		}
 	}
 
-	if (valid)
-		print_solution_board(board, size);
-	else
+	if (!valid)
 		print_error_board(board, size, error);
 
 	return (valid);
@@ -116,6 +114,7 @@ bool	checker(t_ctx ctx)
 			PRINT_ERROR(2, "Line is invalid.\n");
 			PRINT_ERROR(2, line);
 			PRINT_ERROR(2, "\n");
+			fclose(file);
 			return (false);
 		}
 		if (!check_board(line, ctx.size))
